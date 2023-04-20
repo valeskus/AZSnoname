@@ -1,17 +1,21 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+// import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Home} from './screens/Home';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Menu} from './screens/Menu';
+import {Header} from './App/components';
 
-export type StackRegistrationParamList = {
-  Main: undefined;
-};
-
-const HomeStack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 export function StackHome(): JSX.Element {
   return (
-    <HomeStack.Navigator>
-      <HomeStack.Screen name="Home" component={Home} />
-    </HomeStack.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        header: Header,
+        drawerPosition: 'right',
+      }}>
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Menu" component={Menu} />
+    </Drawer.Navigator>
   );
 }
