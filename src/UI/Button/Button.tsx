@@ -4,7 +4,7 @@ import {styles} from './styles';
 
 export type Props = {
   title: string;
-  onPress: () => {};
+  onPress: () => void;
   pressableStyle?: StyleProp<ViewStyle>;
 };
 

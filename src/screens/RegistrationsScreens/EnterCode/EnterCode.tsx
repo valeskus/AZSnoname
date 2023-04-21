@@ -1,7 +1,17 @@
 import React from 'react';
-import {View} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {styles} from './styles';
+import {Button} from '../../../UI/Button';
+import {useNavigation} from '@react-navigation/native';
 
 export function EnterCode(): JSX.Element {
-  return <View style={styles.container} />;
+  const navigation = useNavigation();
+  return (
+    <SafeAreaView style={styles.container}>
+      <Button
+        title="ДАЛІ"
+        onPress={() => navigation.navigate('EnterUserName')}
+      />
+    </SafeAreaView>
+  );
 }

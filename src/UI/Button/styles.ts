@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
     padding: 18,
     textAlign: 'center',
     color: 'rgb(252, 255, 254)',
-    fontFamily: 'Mustica Pro',
+    // fontFamily: 'Mustica Pro',
     fontStyle: 'normal',
     fontWeight: '600',
   },

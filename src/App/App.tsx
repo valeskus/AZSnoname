@@ -2,7 +2,10 @@ import React from 'react';
 import {Platform, UIManager} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {StackRegistration} from './StackRegistration';
+import {
+  StackRegistration,
+  StackRegistrationParamList,
+} from './StackRegistration';
 import {StackHome} from './StackHome';
 
 if (
@@ -17,11 +20,13 @@ export type RootStackParamList = {
   StackRegistration: undefined;
 };
 
+//TODO stacks param list
 const Stack = createNativeStackNavigator();
 
 declare global {
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
+    interface RootParamList extends StackRegistrationParamList {}
   }
 }
 
