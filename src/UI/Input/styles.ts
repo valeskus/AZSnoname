@@ -1,9 +1,6 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'yellow',
-  },
   input: {
     width: 311,
     height: 44,
