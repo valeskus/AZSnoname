@@ -14,7 +14,7 @@ if (
 
 export type RootStackParamList = {
   StackHome: undefined;
-  // StackRegistration: undefined;
+  StackRegistration: undefined;
 };
 
 const Stack = createNativeStackNavigator();
@@ -29,11 +29,11 @@ function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="StackRegistration"
           component={StackRegistration}
           options={{headerShown: false}}
-        /> */}
+        />
         <Stack.Screen
           name="StackHome"
           component={StackHome}
