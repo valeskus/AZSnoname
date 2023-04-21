@@ -25,7 +25,7 @@ declare global {
   }
 }
 
-function App(): JSX.Element {
+export function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -43,5 +43,3 @@ function App(): JSX.Element {
     </NavigationContainer>
   );
 }
-
-export default App;

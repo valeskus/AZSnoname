@@ -4,6 +4,5 @@ export const styles = StyleSheet.create({
   detailsScreenContainer: {
     flex: 1,
     padding: 10,
-    backgroundColor: 'red',
   },
 });

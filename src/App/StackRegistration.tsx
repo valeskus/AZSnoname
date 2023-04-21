@@ -1,6 +1,6 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Registration} from './screens/Registration';
+import {Registration} from '../screens/Registration';
 
 export type StackRegistrationParamList = {
   Main: undefined;
