@@ -17,7 +17,7 @@ export function PhoneNumberInput({lable, icon, editable}: Props): JSX.Element {
   }, []);
 
   return (
-    <View>
+    <View style={styles.PhoneNumberContainer}>
       <Text style={styles.lable}>{lable}</Text>
       <View style={styles.phoneNumberInputcontainer}>
         <Image source={Icons.flag} style={styles.flagIcon} />

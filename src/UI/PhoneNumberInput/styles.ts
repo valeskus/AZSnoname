@@ -1,6 +1,9 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
+  PhoneNumberContainer: {
+    flex: 2,
+  },
   phoneNumberInputcontainer: {
     width: '100%',
     height: 44,

@@ -7,4 +7,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginHorizontal: 25,
   },
+  inputsContainer: {flex: 2, width: '100%'},
 });

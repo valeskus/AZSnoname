@@ -1,16 +1,18 @@
 import React from 'react';
-import {SafeAreaView, Text} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {useNavigation} from '@react-navigation/native';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {CodeInputs} from '../../../UI/CodeInputs/CodeInputs';
+import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 
 export function EnterCode(): JSX.Element {
   const navigation = useNavigation();
+  //TODO
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={{marginBottom: 20}}>ПРОЦЕС РЕЕСТРАЦІЇ</Text>
+      <RegistrationHeader />
       <PhoneNumberInput
         lable="Ваш номер телефону:"
         editable={false}
