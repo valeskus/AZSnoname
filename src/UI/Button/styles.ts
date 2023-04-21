@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 0},
+    marginBottom: 30,
   },
   buttonPressed: {
     transform: [{scale: 0.9}],

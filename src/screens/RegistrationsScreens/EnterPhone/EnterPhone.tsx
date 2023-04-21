@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -11,11 +11,13 @@ export function EnterPhone(): JSX.Element {
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
-      <PhoneNumberInput
-        lable={'Введіть ваш номер телефону:'}
-        editable={true}
-        icon={'cancel'}
-      />
+      <View style={styles.inputsContainer}>
+        <PhoneNumberInput
+          lable={'Введіть ваш номер телефону:'}
+          editable={true}
+          icon={'cancel'}
+        />
+      </View>
       <Button title="ДАЛІ" onPress={() => navigation.navigate('EnterCode')} />
     </SafeAreaView>
   );

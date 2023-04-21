@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {useNavigation} from '@react-navigation/native';
@@ -9,16 +9,18 @@ import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 
 export function EnterCode(): JSX.Element {
   const navigation = useNavigation();
-  //TODO
+
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
-      <PhoneNumberInput
-        lable="Ваш номер телефону:"
-        editable={false}
-        icon={'pencil'}
-      />
-      <CodeInputs />
+      <View style={styles.inputsContainer}>
+        <PhoneNumberInput
+          lable="Ваш номер телефону:"
+          editable={false}
+          icon={'pencil'}
+        />
+        <CodeInputs />
+      </View>
 
       <Button
         title="ДАЛІ"
