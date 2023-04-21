@@ -17,7 +17,7 @@ export function EnterCode(): JSX.Element {
         <PhoneNumberInput
           lable="Ваш номер телефону:"
           editable={false}
-          icon={'pencil'}
+          onChange={() => {}}
         />
         <CodeInputs />
         <Link to={'/'}>Надіслати код повторно</Link>

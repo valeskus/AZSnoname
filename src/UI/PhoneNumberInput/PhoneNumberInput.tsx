@@ -2,18 +2,35 @@ import React, {useCallback, useState} from 'react';
 import {Image, Pressable, Text, TextInput, View} from 'react-native';
 import {styles} from './styles';
 import {Icons} from '../Icons';
+import {useNavigation} from '@react-navigation/native';
 
 export type Props = {
+  onChange: (n: string) => void;
   lable: string;
-  icon: keyof typeof Icons;
   editable: boolean;
 };
 
-export function PhoneNumberInput({lable, icon, editable}: Props): JSX.Element {
+export function PhoneNumberInput({
+  lable,
+  editable,
+  onChange,
+}: Props): JSX.Element {
   const [phoneNumber, setPhoneNumber] = useState('+38(0');
   //TODO onChange
-  const handleChange = useCallback((value: any) => {
-    setPhoneNumber(value);
+  const navigation = useNavigation();
+  const handleChange = useCallback(
+    (value: any) => {
+      if (!value) {
+        return;
+      }
+      setPhoneNumber(value);
+      onChange(value);
+    },
+    [onChange],
+  );
+
+  const removePhoneNumber = useCallback(() => {
+    setPhoneNumber('+38(0');
   }, []);
 
   return (
@@ -24,19 +41,31 @@ export function PhoneNumberInput({lable, icon, editable}: Props): JSX.Element {
         <TextInput
           style={styles.input}
           value={phoneNumber}
-          onChange={e => handleChange(e)}
+          onChangeText={handleChange}
           keyboardType="number-pad"
           editable={editable}
           selectTextOnFocus={editable}
         />
-        <Pressable
-          onPress={() => {}}
-          style={({pressed}) => [
-            styles.inputIconContainer,
-            pressed && styles.inputIconPress,
-          ]}>
-          <Image source={Icons[icon]} style={styles.inputIcon} />
-        </Pressable>
+
+        {editable ? (
+          <Pressable
+            onPress={removePhoneNumber}
+            style={({pressed}) => [
+              styles.inputIconContainer,
+              pressed && styles.inputIconPress,
+            ]}>
+            <Image source={Icons.cancel} style={styles.inputIcon} />
+          </Pressable>
+        ) : (
+          <Pressable
+            onPress={() => navigation.navigate('EnterPhone')}
+            style={({pressed}) => [
+              styles.inputIconContainer,
+              pressed && styles.inputIconPress,
+            ]}>
+            <Image source={Icons.pencil} style={styles.inputIcon} />
+          </Pressable>
+        )}
       </View>
     </View>
   );

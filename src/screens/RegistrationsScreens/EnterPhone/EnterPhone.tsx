@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
@@ -7,18 +7,28 @@ import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 
 export function EnterPhone(): JSX.Element {
+  const [phoneNumber, setPhoneNumber] = useState('');
+
   const navigation = useNavigation();
+
+  const handleNumber = useCallback((number: string) => {
+    setPhoneNumber(number);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
         <PhoneNumberInput
+          onChange={handleNumber}
           lable={'Введіть ваш номер телефону:'}
           editable={true}
-          icon={'cancel'}
         />
       </View>
-      <Button title="ДАЛІ" onPress={() => navigation.navigate('EnterCode')} />
+      <Button
+        title="ДАЛІ"
+        onPress={() => navigation.navigate('EnterCode', phoneNumber)}
+      />
     </SafeAreaView>
   );
 }
