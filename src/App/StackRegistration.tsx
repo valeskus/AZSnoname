@@ -16,7 +16,7 @@ const RegistrationStack = createNativeStackNavigator();
 
 export function StackRegistration(): JSX.Element {
   return (
-    <RegistrationStack.Navigator screenOptions={{headerShown: false}}>
+    <RegistrationStack.Navigator screenOptions={{headerTitle: ''}}>
       <RegistrationStack.Screen name="EnterPhone" component={EnterPhone} />
       <RegistrationStack.Screen name="EnterCode" component={EnterCode} />
       <RegistrationStack.Screen

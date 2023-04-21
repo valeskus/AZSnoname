@@ -1,18 +1,17 @@
 import React from 'react';
-import {KeyboardTypeOptions, TextInput} from 'react-native';
+import {KeyboardTypeOptions, Text, TextInput, View} from 'react-native';
 import {styles} from './styles';
 
 export type Props = {
-  placeholder?: string;
   type?: KeyboardTypeOptions | undefined;
+  lable?: string;
 };
 
-export function Input({placeholder, type}: Props): JSX.Element {
+export function Input({type, lable}: Props): JSX.Element {
   return (
-    <TextInput
-      style={styles.input}
-      placeholder={placeholder}
-      keyboardType={type}
-    />
+    <View style={styles.inputContainer}>
+      <Text style={styles.lable}>{lable}</Text>
+      <TextInput style={styles.input} keyboardType={type} />
+    </View>
   );
 }

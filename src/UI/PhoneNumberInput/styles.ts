@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   phoneNumberInputcontainer: {
-    width: 311,
+    width: '100%',
     height: 44,
     borderColor: 'rgb(252, 255, 254)',
     borderWidth: 1,
@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     alignContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 20,
   },
   input: {
     flex: 1,
@@ -41,5 +42,8 @@ export const styles = StyleSheet.create({
   },
   inputIconPress: {
     transform: [{scale: 0.9}],
+  },
+  lable: {
+    marginBottom: 10,
   },
 });
