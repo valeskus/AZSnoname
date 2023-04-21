@@ -42,7 +42,7 @@ export function PhoneNumberInput({
           style={styles.input}
           value={phoneNumber}
           onChangeText={handleChange}
-          keyboardType="number-pad"
+          inputMode={'tel'}
           editable={editable}
           selectTextOnFocus={editable}
         />

@@ -5,13 +5,19 @@ import {styles} from './styles';
 export type Props = {
   type?: KeyboardTypeOptions | undefined;
   lable?: string;
+  length?: number;
 };
 
-export function Input({type, lable}: Props): JSX.Element {
+export function Input({type, lable, length}: Props): JSX.Element {
+  const isCodeInput = length === 1 ? true : false;
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.lable}>{lable}</Text>
-      <TextInput style={styles.input} keyboardType={type} />
+      <TextInput
+        style={[styles.input, isCodeInput && styles.center]}
+        keyboardType={type}
+        maxLength={length}
+      />
     </View>
   );
 }

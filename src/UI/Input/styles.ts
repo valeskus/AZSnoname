@@ -25,4 +25,7 @@ export const styles = StyleSheet.create({
   lable: {
     marginBottom: 10,
   },
+  center: {
+    textAlign: 'center',
+  },
 });
