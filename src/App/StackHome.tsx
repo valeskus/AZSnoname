@@ -1,10 +1,23 @@
 import React from 'react';
 import {Home} from '../screens/Home';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import {Menu} from '../screens/Menu';
 import {Header} from './components';
+import {Account} from '../screens/Account';
+import {Vouchers} from '../screens/Vouchers';
+import {Price} from '../screens/Price';
+import {Sales} from '../screens/Sales';
+import {Map} from '../screens/Map';
 
 const Drawer = createDrawerNavigator();
+
+export type StackHomeParamList = {
+  Головна: undefined;
+  'Мій кабінет': {
+    'Мої талони': undefined;
+  };
+  Акції: undefined;
+  'Карта АЗК': undefined;
+};
 
 export function StackHome(): JSX.Element {
   return (
@@ -24,8 +37,12 @@ export function StackHome(): JSX.Element {
           shadowOffset: {width: 0, height: 0},
         },
       }}>
-      <Drawer.Screen name="Home" component={Home} />
-      <Drawer.Screen name="Menu" component={Menu} />
+      <Drawer.Screen name="Головна" component={Home} />
+      <Drawer.Screen name="Мій кабінет" component={Account} />
+      <Drawer.Screen name="Мої талони" component={Vouchers} />
+      <Drawer.Screen name="Ціни" component={Price} />
+      <Drawer.Screen name="Акції" component={Sales} />
+      <Drawer.Screen name="Карта АЗК" component={Map} />
     </Drawer.Navigator>
   );
 }

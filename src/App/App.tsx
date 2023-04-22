@@ -6,7 +6,7 @@ import {
   StackRegistration,
   StackRegistrationParamList,
 } from './StackRegistration';
-import {StackHome} from './StackHome';
+import {StackHome, StackHomeParamList} from './StackHome';
 
 if (
   Platform.OS === 'android' &&
@@ -27,6 +27,7 @@ declare global {
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
     interface RootParamList extends StackRegistrationParamList {}
+    interface RootParamList extends StackHomeParamList {}
   }
 }
 
