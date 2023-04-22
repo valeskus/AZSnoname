@@ -22,7 +22,7 @@ let confimation: FirebaseAuthTypes.ConfirmationResult | undefined;
 
 export const signIn = async (phoneNumber: string, dispatch: Dispatch) => {
   try {
-    confimation = await auth().signInWithPhoneNumber(phoneNumber);
+    confimation = await auth().signInWithPhoneNumber('+380' + phoneNumber);
 
     dispatch(actionSignIn(phoneNumber));
   } catch (error) {

@@ -28,7 +28,7 @@ export const UseEnterPhoneController = () => {
   const onPress = async () => {
     setLoading(true);
 
-    await signIn('+380' + phoneNumber);
+    await signIn(phoneNumber);
 
     setLoading(false);
 
