@@ -1,26 +1,40 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
-import {Link, useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {CodeInputs} from '../../../UI/CodeInputs/CodeInputs';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 
 export function EnterCode(): JSX.Element {
   const navigation = useNavigation();
+  const route = useRoute<any>();
+  const [valid, setValid] = useState(false);
+
+  // const [SMSCode, setSMSCode] = useState();
+
+  // const handleCheckCode = useCallback(()=>{
+
+  // },[])
+
+  const handlerCode = useCallback((code: number) => {
+    // setSMSCode(code);
+    console.log('code', code);
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
         <PhoneNumberInput
-          lable="Ваш номер телефону:"
+          label="Ваш номер телефону:"
           editable={false}
-          onChange={() => {}}
+          initialValue={route.params?.phoneNumber}
+          onEditPress={navigation.goBack}
         />
-        <CodeInputs />
-        <Link to={'/'}>Надіслати код повторно</Link>
+        <CodeInputs onChange={handlerCode} valid={false} />
+        {/* <Link to={'/'}>Надіслати код повторно</Link> */}
       </View>
 
       <Button

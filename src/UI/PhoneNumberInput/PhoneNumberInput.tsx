@@ -2,49 +2,53 @@ import React, {useCallback, useState} from 'react';
 import {Image, Pressable, Text, TextInput, View} from 'react-native';
 import {styles} from './styles';
 import {Icons} from '../Icons';
-import {useNavigation} from '@react-navigation/native';
 
 export type Props = {
-  onChange: (n: string) => void;
-  lable: string;
+  onChange?: (phoneNumber: string, isValid: boolean) => void;
+  onEditPress?: () => void;
+  label: string;
   editable: boolean;
+  initialValue?: string;
 };
 
 export function PhoneNumberInput({
-  lable,
+  label,
   editable,
+  initialValue = '',
+  onEditPress,
   onChange,
 }: Props): JSX.Element {
-  const [phoneNumber, setPhoneNumber] = useState('+38(0');
-  //TODO onChange
-  const navigation = useNavigation();
+  const [phoneNumber, setPhoneNumber] = useState(initialValue);
+
   const handleChange = useCallback(
-    (value: any) => {
-      if (!value) {
-        return;
-      }
-      setPhoneNumber(value);
-      onChange(value);
+    (value: string) => {
+      const rawValue = value.trim().replace(/\D/g, '');
+
+      console.log('rawValue', rawValue);
+
+      setPhoneNumber(rawValue);
+      onChange?.(value, value.length === 9);
     },
     [onChange],
   );
 
   const removePhoneNumber = useCallback(() => {
-    setPhoneNumber('+38(0');
+    setPhoneNumber('');
   }, []);
 
+  // TODO LABEL
   return (
-    <View style={styles.PhoneNumberContainer}>
-      <Text style={styles.lable}>{lable}</Text>
+    <View style={styles.phoneNumberContainer}>
+      <Text style={styles.label}>{label}</Text>
       <View style={styles.phoneNumberInputcontainer}>
         <Image source={Icons.flag} style={styles.flagIcon} />
+        <Text style={styles.inputText}>+38(0</Text>
         <TextInput
-          style={styles.input}
+          style={[styles.input, styles.inputText]}
           value={phoneNumber}
           onChangeText={handleChange}
           inputMode={'tel'}
           editable={editable}
-          selectTextOnFocus={editable}
         />
 
         {editable ? (
@@ -58,7 +62,7 @@ export function PhoneNumberInput({
           </Pressable>
         ) : (
           <Pressable
-            onPress={() => navigation.navigate('EnterPhone')}
+            onPress={onEditPress}
             style={({pressed}) => [
               styles.inputIconContainer,
               pressed && styles.inputIconPress,

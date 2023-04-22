@@ -7,7 +7,9 @@ import {EnterUserBirthday} from '../screens/RegistrationsScreens/EnterUserBirthd
 
 export type StackRegistrationParamList = {
   EnterPhone: undefined;
-  EnterCode: string;
+  EnterCode: {
+    phoneNumber: string;
+  };
   EnterUserName: undefined;
   EnterUserBirthday: undefined;
 };

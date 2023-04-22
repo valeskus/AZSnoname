@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  PhoneNumberContainer: {
+  phoneNumberContainer: {
     // flex: 2,
   },
   phoneNumberInputcontainer: {
@@ -20,13 +20,14 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  input: {
-    flex: 1,
+  inputText: {
     letterSpacing: 0.04,
-    // fontFamily: 'Mustica Pro',
     fontStyle: 'normal',
     fontWeight: '600',
     color: '#303030',
+  },
+  input: {
+    flex: 1,
   },
   inputIcon: {
     width: 10,
@@ -46,7 +47,7 @@ export const styles = StyleSheet.create({
   inputIconPress: {
     transform: [{scale: 0.9}],
   },
-  lable: {
+  label: {
     marginBottom: 10,
   },
 });

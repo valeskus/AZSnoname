@@ -8,12 +8,25 @@ import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 
 export function EnterPhone(): JSX.Element {
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isValid, setValid] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const navigation = useNavigation();
 
-  const handleNumber = useCallback((number: string) => {
+  const handleNumber = useCallback((number: string, valid: boolean) => {
     setPhoneNumber(number);
+    setValid(valid);
   }, []);
+
+  const onPress = async () => {
+    setLoading(true);
+
+    await new Promise<void>(resolve => setTimeout(resolve, 2000));
+
+    setLoading(false);
+
+    navigation.navigate('EnterCode', {phoneNumber});
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -21,13 +34,15 @@ export function EnterPhone(): JSX.Element {
       <View style={styles.inputsContainer}>
         <PhoneNumberInput
           onChange={handleNumber}
-          lable={'Введіть ваш номер телефону:'}
+          label="Введіть ваш номер телефону:"
           editable={true}
         />
       </View>
       <Button
+        isLoading={isLoading}
+        disabled={!isValid}
         title="ДАЛІ"
-        onPress={() => navigation.navigate('EnterCode', phoneNumber)}
+        onPress={onPress}
       />
     </SafeAreaView>
   );

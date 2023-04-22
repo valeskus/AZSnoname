@@ -12,8 +12,8 @@ export function EnterUserName(): JSX.Element {
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
-        <Input lable={"Ваше ім'я"} />
-        <Input lable={'Ваше прізвище'} />
+        <Input label={"Ваше ім'я"} onChange={() => {}} />
+        <Input label={'Ваше прізвище'} onChange={() => {}} />
       </View>
       <Button
         title="ДАЛІ"

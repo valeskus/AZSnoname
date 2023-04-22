@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 20,
   },
-  lable: {
+  label: {
     marginBottom: 10,
   },
   center: {

@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: 'rgba(0, 180, 136, 1)',
+    backgroundColor: 'rgb(0, 180, 136)',
     width: '100%',
     borderRadius: 15,
     borderColor: '#FCFFFE',
@@ -15,6 +15,12 @@ export const styles = StyleSheet.create({
   },
   buttonPressed: {
     transform: [{scale: 0.9}],
+  },
+  buttonDisabled: {
+    backgroundColor: 'rgb(100, 100, 100)',
+  },
+  loadingIndicator: {
+    marginVertical: 18,
   },
   buttonTitle: {
     fontSize: 18,
