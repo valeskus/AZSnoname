@@ -1,13 +1,13 @@
 import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
-import {useNavigation} from '@react-navigation/native';
 import {Button} from '../../../UI/Button';
 import {Input} from '../../../UI/Input';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
+import {useEnterUserNameController} from './useEnterUserNameController';
 
 export function EnterUserName(): JSX.Element {
-  const navigation = useNavigation();
+  const {onPress} = useEnterUserNameController();
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
@@ -15,10 +15,7 @@ export function EnterUserName(): JSX.Element {
         <Input label={"Ваше ім'я"} onChange={() => {}} />
         <Input label={'Ваше прізвище'} onChange={() => {}} />
       </View>
-      <Button
-        title="ДАЛІ"
-        onPress={() => navigation.navigate('EnterUserBirthday')}
-      />
+      <Button title="ДАЛІ" onPress={onPress} />
     </SafeAreaView>
   );
 }

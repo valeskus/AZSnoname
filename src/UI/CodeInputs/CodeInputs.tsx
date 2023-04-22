@@ -6,9 +6,10 @@ import {Input} from '../Input';
 export type Props = {
   label: string;
   onChange: (value: number) => void;
+  valid: boolean;
 };
 
-export function CodeInputs({label, onChange}: Props): JSX.Element {
+export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
   const [code, setCode] = useState('    ');
 
   const getOnChangeHandler = useCallback(

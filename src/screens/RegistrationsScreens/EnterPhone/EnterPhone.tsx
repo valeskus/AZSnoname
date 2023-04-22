@@ -1,32 +1,13 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {SafeAreaView, View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
-import {useNavigation} from '@react-navigation/native';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
+import {UseEnterPhoneController} from './useEnterPhoneController';
 
 export function EnterPhone(): JSX.Element {
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [isValid, setValid] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-
-  const navigation = useNavigation();
-
-  const handleNumber = useCallback((number: string, valid: boolean) => {
-    setPhoneNumber(number);
-    setValid(valid);
-  }, []);
-
-  const onPress = async () => {
-    setLoading(true);
-
-    await new Promise<void>(resolve => setTimeout(resolve, 2000));
-
-    setLoading(false);
-
-    navigation.navigate('EnterCode', {phoneNumber});
-  };
+  const {isValid, isLoading, onPress, handleNumber} = UseEnterPhoneController();
 
   return (
     <SafeAreaView style={styles.container}>
