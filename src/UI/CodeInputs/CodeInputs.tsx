@@ -32,7 +32,7 @@ export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
   );
 
   return (
-    <View>
+    <View style={[!valid && {backgroundColor: 'red'}]}>
       <Text>{label}</Text>
       <View style={styles.codeInputsGroup}>
         <View style={styles.codeInput}>

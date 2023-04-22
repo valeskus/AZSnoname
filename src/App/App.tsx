@@ -7,6 +7,8 @@ import {
   StackRegistrationParamList,
 } from './StackRegistration';
 import {StackHome, StackHomeParamList} from './StackHome';
+import {Provider} from 'react-redux';
+import {store} from '../stores/rootStore';
 
 if (
   Platform.OS === 'android' &&
@@ -32,19 +34,21 @@ declare global {
 
 export function App(): JSX.Element {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="StackRegistration"
-          component={StackRegistration}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="StackHome"
-          component={StackHome}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="StackRegistration"
+            component={StackRegistration}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="StackHome"
+            component={StackHome}
+            options={{headerShown: false}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

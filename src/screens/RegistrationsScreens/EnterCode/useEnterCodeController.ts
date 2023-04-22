@@ -1,23 +1,39 @@
-import {useCallback} from 'react';
-import {useNavigation, useRoute} from '@react-navigation/native';
+import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {useConfirmCodeThrowable, useUserStore} from '../../../stores/user';
 
 export const useEnterCodeController = () => {
   const navigation = useNavigation();
-  const route = useRoute<any>();
+  const [code, setCode] = useState('');
+  const [isValid, setValid] = useState(true);
 
-  // const [SMSCode, setSMSCode] = useState();
+  const {phoneNumber} = useUserStore();
+  const confirmCodeThrowable = useConfirmCodeThrowable();
 
-  // const handleCheckCode = useCallback(()=>{
+  const onEditPhonePress = () => {
+    navigation.goBack();
+  };
 
-  // },[])
+  const onNextPress = async () => {
+    try {
+      await confirmCodeThrowable(code);
+      navigation.navigate('EnterUserName');
+    } catch {
+      setValid(false);
+    }
+  };
 
-  const handlerCode = useCallback((code: number) => {
-    // setSMSCode(code);
-    console.log('code', code);
-  }, []);
+  const onCodeChange = (nextCode: number) => {
+    setCode(String(nextCode));
+    setValid(true);
+  };
+
   return {
-    handlerCode,
-    route,
-    navigation,
+    phoneNumber,
+    isValid,
+    onEditPhonePress,
+    onNextPress,
+    onCodeChange,
+    isNextDisabled: code.length < 4,
   };
 };

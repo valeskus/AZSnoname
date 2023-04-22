@@ -9,7 +9,14 @@ import {useEnterCodeController} from './useEnterCodeController';
 import {LinkButton} from '../../../UI/LinkButton';
 
 export function EnterCode(): JSX.Element {
-  const {handlerCode, route, navigation} = useEnterCodeController();
+  const {
+    onCodeChange,
+    phoneNumber,
+    isValid,
+    isNextDisabled,
+    onEditPhonePress,
+    onNextPress,
+  } = useEnterCodeController();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -18,12 +25,12 @@ export function EnterCode(): JSX.Element {
         <PhoneNumberInput
           label="Ваш номер телефону:"
           editable={false}
-          initialValue={route.params?.phoneNumber}
-          onEditPress={navigation.goBack}
+          initialValue={phoneNumber}
+          onEditPress={onEditPhonePress}
         />
         <CodeInputs
-          onChange={handlerCode}
-          valid={false}
+          onChange={onCodeChange}
+          valid={isValid}
           label={'Введіть код з SMS'}
         />
         {/* <Link to={'/'}>Надіслати код повторно</Link> */}
@@ -35,10 +42,7 @@ export function EnterCode(): JSX.Element {
         />
       </View>
 
-      <Button
-        title="ДАЛІ"
-        onPress={() => navigation.navigate('EnterUserName')}
-      />
+      <Button disabled={isNextDisabled} title="ДАЛІ" onPress={onNextPress} />
     </SafeAreaView>
   );
 }

@@ -1,8 +1,8 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
-import {placeholderReducer} from './placeholder/placeholderReducer';
+import {userReducer} from './user/userReducer';
 
 const rootReducer = combineReducers({
-  placeholder: placeholderReducer,
+  user: userReducer,
 });
 
 export type RootStore = ReturnType<typeof rootReducer>;
