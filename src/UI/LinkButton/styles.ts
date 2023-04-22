@@ -4,15 +4,13 @@ export const styles = StyleSheet.create({
   linkButtonContainer: {
     flexDirection: 'row',
     width: '100%',
-    alignItems: 'baseline',
+    alignItems: 'flex-end',
     justifyContent: 'space-between',
   },
   center: {
     justifyContent: 'center',
   },
-  linkButton: {
-    marginBottom: 30,
-  },
+
   buttonPressed: {
     transform: [{scale: 0.9}],
   },
@@ -28,7 +26,6 @@ export const styles = StyleSheet.create({
     paddingVertical: 5,
     borderBottomColor: 'rgb(48, 48, 48)',
     borderBottomWidth: 1,
-    flex: 2,
   },
   checkIcon: {
     width: 24,

@@ -17,20 +17,20 @@ export function LinkButton({
   selectButton,
 }: Props): JSX.Element {
   const [check, setCheck] = useState(false);
+
   return (
     <View style={[styles.linkButtonContainer, !selectButton && styles.center]}>
       <Pressable
         onPress={onPress}
-        style={({pressed}) => [
-          styles.linkButton,
-          pressed && styles.buttonPressed,
-        ]}>
+        style={({pressed}) => [pressed && styles.buttonPressed]}>
         <View style={underline && styles.underline}>
           <Text style={styles.buttonTitle}>{title}</Text>
         </View>
       </Pressable>
       {selectButton && (
-        <Pressable onPress={() => setCheck(true)} style={styles.checkContainer}>
+        <Pressable
+          onPress={() => setCheck(!check)}
+          style={styles.checkContainer}>
           {check && <Image source={Icons.check} style={[styles.checkIcon]} />}
         </Pressable>
       )}
