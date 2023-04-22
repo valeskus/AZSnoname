@@ -1,5 +1,5 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
-import {placeholderReducer} from './placeholderReducer';
+import {placeholderReducer} from './placeholder/placeholderReducer';
 
 const rootReducer = combineReducers({
   placeholder: placeholderReducer,
