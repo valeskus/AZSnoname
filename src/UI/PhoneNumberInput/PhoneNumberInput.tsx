@@ -1,7 +1,8 @@
-import React, {useCallback, useState} from 'react';
+import React from 'react';
 import {Image, Pressable, Text, TextInput, View} from 'react-native';
 import {styles} from './styles';
 import {Icons} from '../Icons';
+import {usePhoneNumberInputController} from './usePhoneNumberInputController';
 
 export type Props = {
   onChange?: (phoneNumber: string, isValid: boolean) => void;
@@ -18,25 +19,11 @@ export function PhoneNumberInput({
   onEditPress,
   onChange,
 }: Props): JSX.Element {
-  const [phoneNumber, setPhoneNumber] = useState(initialValue);
+  //TODO controller arguments
 
-  const handleChange = useCallback(
-    (value: string) => {
-      const rawValue = value.trim().replace(/\D/g, '');
+  const {removePhoneNumber, handleChange, phoneNumber} =
+    usePhoneNumberInputController(initialValue, onChange);
 
-      console.log('rawValue', rawValue);
-
-      setPhoneNumber(rawValue);
-      onChange?.(value, value.length === 9);
-    },
-    [onChange],
-  );
-
-  const removePhoneNumber = useCallback(() => {
-    setPhoneNumber('');
-  }, []);
-
-  // TODO LABEL
   return (
     <View style={styles.phoneNumberContainer}>
       <Text style={styles.label}>{label}</Text>
