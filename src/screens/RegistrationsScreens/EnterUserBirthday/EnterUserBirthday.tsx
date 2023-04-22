@@ -5,6 +5,7 @@ import {Input} from '../../../UI/Input';
 import {Button} from '../../../UI/Button';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserBirthdayController} from './useEnterUserBirthdayController';
+import {LinkButton} from '../../../UI/LinkButton';
 
 export function EnterUserBirthday(): JSX.Element {
   const {onPress} = useEnterUserBirthdayController();
@@ -14,7 +15,12 @@ export function EnterUserBirthday(): JSX.Element {
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
         <Input label={'Дата народження'} onChange={() => {}} />
-        {/* <Link to={'/'}>Я погоджуюсь з правилами програми</Link> */}
+        <LinkButton
+          title="Я погоджуюсь з правилами програми"
+          underline={true}
+          onPress={() => {}}
+          selectButton={true}
+        />
       </View>
 
       <Button title="ДАЛІ" onPress={onPress} />

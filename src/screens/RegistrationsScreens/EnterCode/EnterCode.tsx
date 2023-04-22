@@ -6,6 +6,7 @@ import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {CodeInputs} from '../../../UI/CodeInputs/CodeInputs';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterCodeController} from './useEnterCodeController';
+import {LinkButton} from '../../../UI/LinkButton';
 
 export function EnterCode(): JSX.Element {
   const {handlerCode, route, navigation} = useEnterCodeController();
@@ -26,6 +27,12 @@ export function EnterCode(): JSX.Element {
           label={'Введіть код з SMS'}
         />
         {/* <Link to={'/'}>Надіслати код повторно</Link> */}
+        <LinkButton
+          title="Надіслати код повторно"
+          underline={false}
+          onPress={() => {}}
+          selectButton={false}
+        />
       </View>
 
       <Button
