@@ -20,7 +20,6 @@ export type RootStackParamList = {
   StackRegistration: undefined;
 };
 
-//TODO stacks param list
 const Stack = createNativeStackNavigator();
 
 declare global {
