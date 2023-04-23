@@ -6,10 +6,13 @@ import {Button} from '../../../UI/Button';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserBirthdayController} from './useEnterUserBirthdayController';
 import {LinkButton} from '../../../UI/LinkButton';
+import {useUserStore} from '../../../stores/user';
 
 export function EnterUserBirthday(): JSX.Element {
   const {onPress} = useEnterUserBirthdayController();
+  const userStore = useUserStore();
 
+  console.log(userStore, 'birth');
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />

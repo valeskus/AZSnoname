@@ -8,7 +8,7 @@ export type Props = {
   onChange: (value: number) => void;
   valid: boolean;
 };
-//TODO code inputs
+//TODO code inputs. activ button
 
 export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
   const [code, setCode] = useState('      ');
@@ -31,7 +31,7 @@ export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
     },
     [code, onChange],
   );
-  console.log(code);
+  console.log(code, 'code');
   return (
     <View>
       <Text>{label}</Text>

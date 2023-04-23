@@ -7,13 +7,14 @@ import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserNameController} from './useEnterUserNameController';
 
 export function EnterUserName(): JSX.Element {
-  const {onPress} = useEnterUserNameController();
+  const {onPress, handleUserName, handleUserSurname} =
+    useEnterUserNameController();
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
-        <Input label={"Ваше ім'я"} onChange={() => {}} />
-        <Input label={'Ваше прізвище'} onChange={() => {}} />
+        <Input label={"Ваше ім'я"} onChange={handleUserName} />
+        <Input label={'Ваше прізвище'} onChange={handleUserSurname} />
       </View>
       <Button title="ДАЛІ" onPress={onPress} />
     </SafeAreaView>
