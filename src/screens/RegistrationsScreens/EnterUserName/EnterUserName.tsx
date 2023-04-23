@@ -7,16 +7,23 @@ import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserNameController} from './useEnterUserNameController';
 
 export function EnterUserName(): JSX.Element {
-  const {onPress, handleUserName, handleUserSurname} =
+  const {isValid, isLoading, onPress, handleUserName, handleUserSurname} =
     useEnterUserNameController();
+
+  // TODO: left padding on input
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />
       <View style={styles.inputsContainer}>
-        <Input label={"Ваше ім'я"} onChange={handleUserName} />
-        <Input label={'Ваше прізвище'} onChange={handleUserSurname} />
+        <Input label="Ваше ім'я" onChange={handleUserName} />
+        <Input label="Ваше прізвище" onChange={handleUserSurname} />
       </View>
-      <Button title="ДАЛІ" onPress={onPress} />
+      <Button
+        isLoading={isLoading}
+        disabled={!isValid}
+        title="ДАЛІ"
+        onPress={onPress}
+      />
     </SafeAreaView>
   );
 }

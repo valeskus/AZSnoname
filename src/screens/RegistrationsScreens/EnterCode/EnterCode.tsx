@@ -13,7 +13,9 @@ export function EnterCode(): JSX.Element {
     onCodeChange,
     phoneNumber,
     isValid,
+    codeLength,
     isNextDisabled,
+    isValidating,
     onEditPhonePress,
     onNextPress,
     onResendCode,
@@ -32,17 +34,22 @@ export function EnterCode(): JSX.Element {
         <CodeInputs
           onChange={onCodeChange}
           valid={isValid}
+          codeLength={codeLength}
           label={'Введіть код з SMS'}
         />
         <LinkButton
           title="Надіслати код повторно"
           underline={false}
           onPress={onResendCode}
-          selectButton={false}
         />
       </View>
 
-      <Button disabled={isNextDisabled} title="ДАЛІ" onPress={onNextPress} />
+      <Button
+        isLoading={isValidating}
+        disabled={isNextDisabled}
+        title="ДАЛІ"
+        onPress={onNextPress}
+      />
     </SafeAreaView>
   );
 }

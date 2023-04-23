@@ -1,57 +1,48 @@
 import {useNavigation} from '@react-navigation/native';
-import {useCallback, useState} from 'react';
-import {useUserStore} from '../../../stores/user';
-import {useAddUserBirthday} from '../../../stores/user/hooks/useAddUserBirthday';
+import {useAddUserBirthdayThrowable} from '../../../stores/user/hooks';
+import {useAcceptTerms, useDatePickerController} from './hooks';
+import {useState} from 'react';
 
 export const useEnterUserBirthdayController = () => {
-  const [date, setDate] = useState(new Date());
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+
+  const {
+    openDatePicker,
+    closeDatePicker,
+    isDatePickerVisible,
+    date,
+    formattedDate,
+    onChangeDate,
+  } = useDatePickerController();
+
+  const AcceptTerms = useAcceptTerms();
 
   const navigation = useNavigation();
-  const userStore = useUserStore();
-  const addUserBirthday = useAddUserBirthday();
-
-  const getStringDate = () => {
-    let mm: string = '';
-    let dd: string = '';
-
-    let yy = date.getFullYear();
-    let mounth = date.getMonth() + 1;
-    let day = date.getDate();
-
-    if (mounth < 10) {
-      mm = '0' + mounth;
-    }
-    if (day < 10) {
-      dd = '0' + day;
-    }
-    const stringDate = (dd || day) + '.' + (mm || mounth) + '.' + yy;
-    return stringDate;
-  };
-
-  const handleOpenPicker = useCallback(() => {
-    setShowDatePicker(true);
-  }, []);
-
-  const inputValue = getStringDate();
+  const addUserBirthdayThrowable = useAddUserBirthdayThrowable();
 
   const onPress = async () => {
-    setShowDatePicker(false);
-    if (!userStore.phoneNumber) {
-      return;
-    }
-    //TODO
-    await addUserBirthday(inputValue, userStore.phoneNumber);
+    closeDatePicker();
+    setLoading(true);
 
-    navigation.navigate('StackHome');
+    try {
+      await addUserBirthdayThrowable(formattedDate);
+      navigation.navigate('StackHome');
+    } catch (error) {
+      //TODO: log error
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
     onPress,
-    handleOpenPicker,
+    openDatePicker,
     date,
-    showDatePicker,
-    setDate,
-    inputValue,
+    isLoading,
+    isDatePickerVisible,
+    onChangeDate,
+    formattedDate,
+    onAccptanceCheckboxPress: AcceptTerms.setAcceptance,
+    isTermsAccepted: AcceptTerms.isAccepted,
   };
 };

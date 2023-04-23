@@ -4,10 +4,10 @@ import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {RegistrationHeader} from '../../../UI/RegistrationHeader';
-import {UseEnterPhoneController} from './useEnterPhoneController';
+import {useEnterPhoneController} from './useEnterPhoneController';
 
 export function EnterPhone(): JSX.Element {
-  const {isValid, isLoading, onPress, handleNumber} = UseEnterPhoneController();
+  const {isValid, isLoading, onPress, handleNumber} = useEnterPhoneController();
 
   return (
     <SafeAreaView style={styles.container}>

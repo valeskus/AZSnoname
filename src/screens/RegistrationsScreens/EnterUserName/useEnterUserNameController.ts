@@ -1,23 +1,15 @@
 import {useNavigation} from '@react-navigation/native';
-import {useCallback, useEffect, useState} from 'react';
-import {useUserStore} from '../../../stores/user';
-import {useAddUserName} from '../../../stores/user/hooks/useAddUserName';
+import {useCallback, useState} from 'react';
+import {useAddUserNameThrowable} from '../../../stores/user/hooks';
 
 export const useEnterUserNameController = () => {
   const [userName, setUserName] = useState('');
   const [userSurname, setUserSurname] = useState('');
+  const [isLoading, setLoading] = useState(false);
 
   const navigation = useNavigation();
-  const userStore = useUserStore();
-  const addUserName = useAddUserName();
 
-  useEffect(() => {
-    if (userName !== userStore.name || userSurname !== userStore.surname) {
-      setUserName(userStore.name || '');
-      setUserSurname(userStore.surname || '');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userStore || '']);
+  const addUserNameThrowable = useAddUserNameThrowable();
 
   const handleUserName = useCallback((name: string) => {
     setUserName(name);
@@ -28,13 +20,23 @@ export const useEnterUserNameController = () => {
   }, []);
 
   const onPress = async () => {
-    if (!userStore.phoneNumber) {
-      return;
-    }
-    await addUserName(userName, userSurname, userStore.phoneNumber);
+    setLoading(true);
 
-    navigation.navigate('EnterUserBirthday');
+    try {
+      await addUserNameThrowable(userName, userSurname);
+      navigation.navigate('EnterUserBirthday');
+    } catch {
+      // TODO: handle error
+    } finally {
+      setLoading(false);
+    }
   };
 
-  return {onPress, handleUserName, handleUserSurname};
+  return {
+    onPress,
+    isLoading,
+    isValid: !!userSurname && !!userName,
+    handleUserName,
+    handleUserSurname,
+  };
 };

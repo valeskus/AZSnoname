@@ -1,6 +1,5 @@
 import {Dispatch} from 'redux';
-import auth, {FirebaseAuthTypes} from '@react-native-firebase/auth';
-import {firebase} from '@react-native-firebase/database';
+import * as FirebaseApi from '../../api/firebaseApi';
 
 export enum UserActions {
   SIGN_IN = '@user/sign-in',
@@ -34,11 +33,9 @@ const actionError = (error: unknown) => ({
   payload: error,
 });
 
-let confimation: FirebaseAuthTypes.ConfirmationResult | undefined;
-
 export const signIn = async (phoneNumber: string, dispatch: Dispatch) => {
   try {
-    confimation = await auth().signInWithPhoneNumber('+380' + phoneNumber);
+    await FirebaseApi.signInWithPhoneNumber('+380' + phoneNumber);
 
     dispatch(actionSignIn(phoneNumber));
   } catch (error) {
@@ -46,48 +43,32 @@ export const signIn = async (phoneNumber: string, dispatch: Dispatch) => {
   }
 };
 
-export const addUserName = async (
+export const addUserNameThrowable = async (
   username: string,
   userSurname: string,
   phoneNumber: string,
   dispatch: Dispatch,
 ) => {
-  try {
-    await firebase
-      .app()
-      .database('https://azsnoname-default-rtdb.firebaseio.com')
-      .ref(`/users/${phoneNumber}`)
-      .set({
-        name: username,
-        surname: userSurname,
-      });
+  await FirebaseApi.databaseSet(phoneNumber, {
+    name: username,
+    surname: userSurname,
+  });
 
-    dispatch(actionAddUserName(username, userSurname));
-  } catch (error) {
-    console.log(error, 'error');
-  }
+  dispatch(actionAddUserName(username, userSurname));
 };
 
-export const addUserBirthday = async (
+export const addUserBirthdayThrowable = async (
   birthday: string,
   phoneNumber: string,
   dispatch: Dispatch,
 ) => {
-  try {
-    await firebase
-      .app()
-      .database('https://azsnoname-default-rtdb.firebaseio.com')
-      .ref(`/users/${phoneNumber}`)
-      .update({
-        birthday,
-      });
+  await FirebaseApi.databaseUpdate(phoneNumber, {
+    birthday,
+  });
 
-    dispatch(actionAddUserBirthday(birthday));
-  } catch (error) {
-    console.log(error, 'error');
-  }
+  dispatch(actionAddUserBirthday(birthday));
 };
 
 export const confirmCodeThrowable = async (code: string) => {
-  await confimation?.confirm(code);
+  await FirebaseApi.confirmPhoneNumber(code);
 };

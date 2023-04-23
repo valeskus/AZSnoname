@@ -17,4 +17,10 @@ export const styles = StyleSheet.create({
     zIndex: 10,
     position: 'absolute',
   },
+  agreementContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+  },
 });

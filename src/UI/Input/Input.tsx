@@ -9,7 +9,7 @@ export type Props = {
   invalid?: boolean;
   value?: string;
   editable?: boolean;
-  onChange: (value: string) => void;
+  onChange?: (value: string) => void;
 };
 
 export function Input({

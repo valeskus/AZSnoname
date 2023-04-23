@@ -1,36 +1,32 @@
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {
-  useConfirmCodeThrowable,
-  useSignIn,
-  useUserStore,
-} from '../../../stores/user';
+import {useSignIn, useUserStore} from '../../../stores/user';
+
+import {useCodeValidator} from './hooks';
 
 export const useEnterCodeController = () => {
   const navigation = useNavigation();
   const [code, setCode] = useState('');
-  const [isValid, setValid] = useState(true);
   const signIn = useSignIn();
+  const {isCodeValid, isValidating, isCodeEntered, codeLength, validate} =
+    useCodeValidator(code);
 
   const {phoneNumber} = useUserStore();
-  const confirmCodeThrowable = useConfirmCodeThrowable();
 
   const onEditPhonePress = () => {
     navigation.goBack();
   };
 
   const onNextPress = async () => {
-    try {
-      await confirmCodeThrowable(code);
+    const isValid = await validate();
+
+    if (isValid) {
       navigation.navigate('EnterUserName');
-    } catch {
-      setValid(false);
     }
   };
 
   const onCodeChange = (nextCode: number) => {
     setCode(String(nextCode));
-    setValid(true);
   };
 
   const onResendCode = async () => {
@@ -42,11 +38,13 @@ export const useEnterCodeController = () => {
 
   return {
     phoneNumber,
-    isValid,
+    isValidating,
+    isValid: isCodeValid,
+    codeLength,
     onEditPhonePress,
     onNextPress,
     onCodeChange,
-    isNextDisabled: code.length < 4,
+    isNextDisabled: !isCodeEntered,
     onResendCode,
   };
 };

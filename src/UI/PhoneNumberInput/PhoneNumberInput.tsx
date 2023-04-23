@@ -19,8 +19,6 @@ export function PhoneNumberInput({
   onEditPress,
   onChange,
 }: Props): JSX.Element {
-  //TODO controller arguments
-
   const {removePhoneNumber, handleChange, phoneNumber} =
     usePhoneNumberInputController(initialValue, onChange);
 
