@@ -30,6 +30,7 @@ export function EnterCode(): JSX.Element {
           editable={false}
           initialValue={phoneNumber}
           onEditPress={onEditPhonePress}
+          phoneFormat="+38(0NN) NN-NN-NNN"
         />
         <CodeInputs
           onChange={onCodeChange}

@@ -10,6 +10,7 @@ export type Props = {
   label: string;
   editable: boolean;
   initialValue?: string;
+  phoneFormat: string;
 };
 
 export function PhoneNumberInput({
@@ -18,16 +19,16 @@ export function PhoneNumberInput({
   initialValue = '',
   onEditPress,
   onChange,
+  phoneFormat,
 }: Props): JSX.Element {
   const {removePhoneNumber, handleChange, phoneNumber} =
-    usePhoneNumberInputController(initialValue, onChange);
+    usePhoneNumberInputController({initialValue, onChange, phoneFormat});
 
   return (
     <View style={styles.phoneNumberContainer}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.phoneNumberInputcontainer}>
         <Image source={Icons.flag} style={styles.flagIcon} />
-        <Text style={styles.inputText}>+38(0</Text>
         <TextInput
           style={[styles.input, styles.inputText]}
           value={phoneNumber}

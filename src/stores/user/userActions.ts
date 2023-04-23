@@ -35,7 +35,7 @@ const actionError = (error: unknown) => ({
 
 export const signIn = async (phoneNumber: string, dispatch: Dispatch) => {
   try {
-    await FirebaseApi.signInWithPhoneNumber('+380' + phoneNumber);
+    await FirebaseApi.signInWithPhoneNumber(phoneNumber);
 
     dispatch(actionSignIn(phoneNumber));
   } catch (error) {

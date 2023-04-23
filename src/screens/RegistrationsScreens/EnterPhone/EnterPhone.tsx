@@ -17,6 +17,8 @@ export function EnterPhone(): JSX.Element {
           onChange={handleNumber}
           label="Введіть ваш номер телефону:"
           editable={true}
+          initialValue="+38(0"
+          phoneFormat="+38(0NN) NN-NN-NNN"
         />
       </View>
       <Button

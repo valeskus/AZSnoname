@@ -1,25 +1,36 @@
 import {useCallback, useState} from 'react';
 
-export const usePhoneNumberInputController = (
-  initialValue?: string,
-  onChange?: (phoneNumber: string, isValid: boolean) => void,
-) => {
+import {usePhoneFormatter} from './hooks';
+
+interface UsePhoneNumberInputControllerParams {
+  initialValue?: string;
+  onChange?: (phoneNumber: string, isValid: boolean) => void;
+  phoneFormat: string;
+}
+
+export const usePhoneNumberInputController = ({
+  initialValue,
+  phoneFormat,
+  onChange,
+}: UsePhoneNumberInputControllerParams) => {
   const [phoneNumber, setPhoneNumber] = useState(initialValue);
+  const format = usePhoneFormatter(phoneFormat, initialValue);
 
   const handleChange = useCallback(
     (value: string) => {
-      const rawValue = value.trim().replace(/\D/g, '');
+      const formattedValue = format(value);
 
-      console.log('rawValue', rawValue);
-
-      setPhoneNumber(rawValue);
-      onChange?.(value, value.length === 9);
+      setPhoneNumber(formattedValue);
+      onChange?.(formattedValue, formattedValue.length === phoneFormat.length);
     },
-    [onChange],
+    [onChange, format, phoneFormat],
   );
 
   const removePhoneNumber = useCallback(() => {
-    setPhoneNumber('');
-  }, []);
+    const formattedValue = format('');
+
+    setPhoneNumber(formattedValue);
+  }, [format]);
+
   return {removePhoneNumber, handleChange, phoneNumber};
 };
