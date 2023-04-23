@@ -7,6 +7,8 @@ export type Props = {
   label?: string;
   length?: number;
   invalid?: boolean;
+  value?: string;
+  editable?: boolean;
   onChange: (value: string) => void;
 };
 
@@ -15,6 +17,8 @@ export function Input({
   label,
   length,
   invalid,
+  value,
+  editable,
   onChange,
 }: Props): JSX.Element {
   const isCodeInput = length === 1 ? true : false;
@@ -30,6 +34,8 @@ export function Input({
         keyboardType={type}
         maxLength={length}
         onChangeText={onChange}
+        value={value}
+        editable={editable}
       />
     </View>
   );

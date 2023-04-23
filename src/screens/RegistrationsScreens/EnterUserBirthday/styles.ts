@@ -10,4 +10,11 @@ export const styles = StyleSheet.create({
     flex: 2,
     width: '100%',
   },
+  dateInputTouch: {
+    width: '100%',
+    height: 45,
+    top: 25,
+    zIndex: 10,
+    position: 'absolute',
+  },
 });

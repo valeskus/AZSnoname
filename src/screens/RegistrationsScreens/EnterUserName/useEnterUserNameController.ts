@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useCallback, useEffect, useState} from 'react';
 import {useUserStore} from '../../../stores/user';
-import {usePushUserName} from '../../../stores/user/hooks/usePushUserName';
+import {useAddUserName} from '../../../stores/user/hooks/useAddUserName';
 
 export const useEnterUserNameController = () => {
   const [userName, setUserName] = useState('');
@@ -9,7 +9,7 @@ export const useEnterUserNameController = () => {
 
   const navigation = useNavigation();
   const userStore = useUserStore();
-  const pushUserName = usePushUserName();
+  const addUserName = useAddUserName();
 
   useEffect(() => {
     if (userName !== userStore.name || userSurname !== userStore.surname) {
@@ -31,7 +31,7 @@ export const useEnterUserNameController = () => {
     if (!userStore.phoneNumber) {
       return;
     }
-    await pushUserName(userName, userSurname, userStore.phoneNumber);
+    await addUserName(userName, userSurname, userStore.phoneNumber);
 
     navigation.navigate('EnterUserBirthday');
   };

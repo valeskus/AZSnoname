@@ -5,6 +5,7 @@ export interface UserStore {
   phoneNumber?: string;
   name?: string;
   surname?: string;
+  birthday?: string;
 }
 
 const initialState: UserStore = {};
@@ -29,6 +30,13 @@ export function userReducer(
         ...state,
         name,
         surname,
+      };
+    }
+    case UserActions.ADD_USER_BIRTHDAY: {
+      const {birthday} = action.payload as {birthday: string};
+      return {
+        ...state,
+        birthday,
       };
     }
     default:

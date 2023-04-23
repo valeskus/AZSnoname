@@ -5,6 +5,7 @@ import {firebase} from '@react-native-firebase/database';
 export enum UserActions {
   SIGN_IN = '@user/sign-in',
   ADD_USER_NAME = '@user/add-user-name',
+  ADD_USER_BIRTHDAY = '@user/add-user-birthday',
   ERROR = '@error/user',
 }
 
@@ -19,6 +20,12 @@ const actionAddUserName = (name: string, surname: string) => ({
   payload: {
     name,
     surname,
+  },
+});
+const actionAddUserBirthday = (birthday: string) => ({
+  type: UserActions.ADD_USER_BIRTHDAY,
+  payload: {
+    birthday,
   },
 });
 
@@ -39,18 +46,13 @@ export const signIn = async (phoneNumber: string, dispatch: Dispatch) => {
   }
 };
 
-export const pushUserName = async (
+export const addUserName = async (
   username: string,
   userSurname: string,
   phoneNumber: string,
   dispatch: Dispatch,
 ) => {
   try {
-    // await database().ref(`/users/${phoneNumber}`).set({
-    //   name: username,
-    //   surname: userSurname,
-    // });
-
     await firebase
       .app()
       .database('https://azsnoname-default-rtdb.firebaseio.com')
@@ -62,7 +64,26 @@ export const pushUserName = async (
 
     dispatch(actionAddUserName(username, userSurname));
   } catch (error) {
-    // dispatch(actionError(error));
+    console.log(error, 'error');
+  }
+};
+
+export const addUserBirthday = async (
+  birthday: string,
+  phoneNumber: string,
+  dispatch: Dispatch,
+) => {
+  try {
+    await firebase
+      .app()
+      .database('https://azsnoname-default-rtdb.firebaseio.com')
+      .ref(`/users/${phoneNumber}`)
+      .update({
+        birthday,
+      });
+
+    dispatch(actionAddUserBirthday(birthday));
+  } catch (error) {
     console.log(error, 'error');
   }
 };

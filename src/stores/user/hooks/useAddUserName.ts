@@ -1,12 +1,12 @@
 import {useDispatch} from 'react-redux';
-import {pushUserName} from '../userActions';
+import {addUserName} from '../userActions';
 
-export const usePushUserName = () => {
+export const useAddUserName = () => {
   const dispatch = useDispatch();
 
   return async (name: string, surname: string, phoneNumber: string) => {
     console.log('name', name, surname);
 
-    await pushUserName(name, surname, phoneNumber, dispatch);
+    await addUserName(name, surname, phoneNumber, dispatch);
   };
 };
