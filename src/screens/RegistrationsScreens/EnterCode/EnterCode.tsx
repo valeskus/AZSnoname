@@ -16,6 +16,7 @@ export function EnterCode(): JSX.Element {
     isNextDisabled,
     onEditPhonePress,
     onNextPress,
+    onResendCode,
   } = useEnterCodeController();
 
   return (
@@ -33,11 +34,10 @@ export function EnterCode(): JSX.Element {
           valid={isValid}
           label={'Введіть код з SMS'}
         />
-        {/* <Link to={'/'}>Надіслати код повторно</Link> */}
         <LinkButton
           title="Надіслати код повторно"
           underline={false}
-          onPress={() => {}}
+          onPress={onResendCode}
           selectButton={false}
         />
       </View>

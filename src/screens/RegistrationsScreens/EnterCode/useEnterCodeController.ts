@@ -1,11 +1,16 @@
 import {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {useConfirmCodeThrowable, useUserStore} from '../../../stores/user';
+import {
+  useConfirmCodeThrowable,
+  useSignIn,
+  useUserStore,
+} from '../../../stores/user';
 
 export const useEnterCodeController = () => {
   const navigation = useNavigation();
   const [code, setCode] = useState('');
   const [isValid, setValid] = useState(true);
+  const signIn = useSignIn();
 
   const {phoneNumber} = useUserStore();
   const confirmCodeThrowable = useConfirmCodeThrowable();
@@ -28,6 +33,13 @@ export const useEnterCodeController = () => {
     setValid(true);
   };
 
+  const onResendCode = async () => {
+    if (!phoneNumber) {
+      return;
+    }
+    await signIn(phoneNumber);
+  };
+
   return {
     phoneNumber,
     isValid,
@@ -35,5 +47,6 @@ export const useEnterCodeController = () => {
     onNextPress,
     onCodeChange,
     isNextDisabled: code.length < 4,
+    onResendCode,
   };
 };

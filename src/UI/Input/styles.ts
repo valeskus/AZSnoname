@@ -28,4 +28,8 @@ export const styles = StyleSheet.create({
   center: {
     textAlign: 'center',
   },
+  invalid: {
+    borderColor: 'red',
+    borderWidth: 1,
+  },
 });

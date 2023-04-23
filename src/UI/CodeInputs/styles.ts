@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   codeInput: {
-    marginHorizontal: 10,
-    width: 70,
+    marginHorizontal: 5,
+    width: 50,
   },
 });

@@ -8,9 +8,10 @@ export type Props = {
   onChange: (value: number) => void;
   valid: boolean;
 };
+//TODO code inputs
 
 export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
-  const [code, setCode] = useState('    ');
+  const [code, setCode] = useState('      ');
 
   const getOnChangeHandler = useCallback(
     (inputIndex: number) => (text: string) => {
@@ -30,22 +31,28 @@ export function CodeInputs({label, onChange, valid}: Props): JSX.Element {
     },
     [code, onChange],
   );
-
+  console.log(code);
   return (
-    <View style={[!valid && {backgroundColor: 'red'}]}>
+    <View>
       <Text>{label}</Text>
       <View style={styles.codeInputsGroup}>
         <View style={styles.codeInput}>
-          <Input onChange={getOnChangeHandler(0)} length={1} />
+          <Input onChange={getOnChangeHandler(0)} length={1} invalid={!valid} />
         </View>
         <View style={styles.codeInput}>
-          <Input onChange={getOnChangeHandler(1)} length={1} />
+          <Input onChange={getOnChangeHandler(1)} length={1} invalid={!valid} />
         </View>
         <View style={styles.codeInput}>
-          <Input onChange={getOnChangeHandler(2)} length={1} />
+          <Input onChange={getOnChangeHandler(2)} length={1} invalid={!valid} />
         </View>
         <View style={styles.codeInput}>
-          <Input onChange={getOnChangeHandler(3)} length={1} />
+          <Input onChange={getOnChangeHandler(3)} length={1} invalid={!valid} />
+        </View>
+        <View style={styles.codeInput}>
+          <Input onChange={getOnChangeHandler(4)} length={1} invalid={!valid} />
+        </View>
+        <View style={styles.codeInput}>
+          <Input onChange={getOnChangeHandler(5)} length={1} invalid={!valid} />
         </View>
       </View>
     </View>
