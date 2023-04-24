@@ -1,7 +1,27 @@
 import React from 'react';
-import {View} from 'react-native';
+import {Text, View} from 'react-native';
+import {useUserStore} from '../../stores/user';
+import {Button} from '../../UI/Button';
+import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
 
 export function Sales(): JSX.Element {
-  return <View />;
+  const {name} = useUserStore();
+  const navigation = useNavigation();
+  return (
+    <View style={styles.container}>
+      {!name && (
+        <>
+          <Text style={styles.text}>
+            Зареєструйстесь для створення власного кабінету
+          </Text>
+          <Button
+            title={'Зареєструватись'}
+            onPress={() => navigation.navigate('StackRegistration')}
+          />
+        </>
+      )}
+      {name && <Text style={styles.text}>Вітаю {name}! </Text>}
+    </View>
+  );
 }

@@ -74,6 +74,7 @@ export function StackDrawer(): JSX.Element {
         options={{
           drawerIcon: getIcon('voucher'),
           title: 'Мої талони',
+          header: renderHeader,
         }}
       />
       <Drawer.Screen
@@ -82,6 +83,7 @@ export function StackDrawer(): JSX.Element {
         options={{
           drawerIcon: getIcon('price'),
           title: 'Ціни',
+          header: renderHeader,
         }}
       />
       <Drawer.Screen
@@ -90,6 +92,7 @@ export function StackDrawer(): JSX.Element {
         options={{
           drawerIcon: getIcon('sale'),
           title: 'Акції',
+          header: renderHeader,
         }}
       />
       <Drawer.Screen
@@ -98,6 +101,7 @@ export function StackDrawer(): JSX.Element {
         options={{
           drawerIcon: getIcon('map'),
           title: 'Карта АЗК',
+          header: renderHeader,
         }}
       />
     </Drawer.Navigator>
