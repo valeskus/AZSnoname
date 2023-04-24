@@ -25,7 +25,6 @@ export function userReducer(
     }
     case UserActions.ADD_USER_NAME: {
       const {name, surname} = action.payload as {name: string; surname: string};
-      console.log(action.payload, 'namePay');
       return {
         ...state,
         name,
@@ -38,6 +37,9 @@ export function userReducer(
         ...state,
         birthday,
       };
+    }
+    case UserActions.SIGN_OUT: {
+      return initialState;
     }
     default:
       return state;

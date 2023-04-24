@@ -5,8 +5,6 @@ export const useSignIn = () => {
   const dispatch = useDispatch();
 
   return async (phoneNumber: string) => {
-    console.log('phoneNumber', phoneNumber);
-
     await signIn(phoneNumber, dispatch);
   };
 };

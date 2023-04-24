@@ -1,13 +1,11 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-import {useUserStore} from '../../stores/user';
 import {Button} from '../../UI/Button';
-import {useNavigation} from '@react-navigation/native';
 import {styles} from './styles';
+import {useVouchersController} from './hooks';
 
 export function Vouchers(): JSX.Element {
-  const {name} = useUserStore();
-  const navigation = useNavigation();
+  const {name, onSignIn} = useVouchersController();
   return (
     <View style={styles.container}>
       {!name && (
@@ -15,10 +13,7 @@ export function Vouchers(): JSX.Element {
           <Text style={styles.text}>
             Зареєструйстесь для створення власного кабінету
           </Text>
-          <Button
-            title={'Зареєструватись'}
-            onPress={() => navigation.navigate('StackRegistration')}
-          />
+          <Button title={'Зареєструватись'} onPress={onSignIn} />
         </>
       )}
       {name && <Text style={styles.text}>Вітаю {name}! </Text>}

@@ -4,10 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const HomeStack = createNativeStackNavigator();
 
-export type StackHomeParamList = {
-  Головна: undefined;
-};
-
 export function StackHome(): JSX.Element {
   return (
     <HomeStack.Navigator

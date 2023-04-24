@@ -3,6 +3,7 @@ import * as FirebaseApi from '../../api/firebaseApi';
 
 export enum UserActions {
   SIGN_IN = '@user/sign-in',
+  SIGN_OUT = '@user/sign-out',
   ADD_USER_NAME = '@user/add-user-name',
   ADD_USER_BIRTHDAY = '@user/add-user-birthday',
   ERROR = '@error/user',
@@ -14,6 +15,11 @@ const actionSignIn = (phoneNumber: string) => ({
     phoneNumber,
   },
 });
+
+const actionSignOut = () => ({
+  type: UserActions.SIGN_OUT,
+});
+
 const actionAddUserName = (name: string, surname: string) => ({
   type: UserActions.ADD_USER_NAME,
   payload: {
@@ -71,4 +77,12 @@ export const addUserBirthdayThrowable = async (
 
 export const confirmCodeThrowable = async (code: string) => {
   await FirebaseApi.confirmPhoneNumber(code);
+};
+
+export const signOut = async (dispatch: Dispatch) => {
+  try {
+    dispatch(actionSignOut());
+  } catch (error) {
+    dispatch(actionError(error));
+  }
 };
