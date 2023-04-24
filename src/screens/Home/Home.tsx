@@ -4,14 +4,13 @@ import {styles} from './styles';
 import {ScreenButton} from '../../UI/ScreenButton';
 import {ImageConstant} from '../../UI/ImageConstant';
 import {Icons} from '../../UI/Icons';
+import {ScrollView} from 'react-native-gesture-handler';
+import {Banner} from './components';
 
 export function Home(): JSX.Element {
   return (
-    <View style={styles.homeScreenContainer}>
-      <Image
-        style={styles.homeScreenGaleryImage}
-        source={ImageConstant.homeGalery}
-      />
+    <ScrollView style={styles.homeScreenContainer}>
+      <Banner />
       <Text style={styles.homeScreenTitle}>Слідкуй за знижками</Text>
 
       <ScreenButton icon={'sale'} text={'Отримати персональну знижку'} />
@@ -36,6 +35,9 @@ export function Home(): JSX.Element {
       <Text style={styles.homeScreenTitle}>Карта АЗК САН</Text>
 
       <Image style={styles.screenMap} source={ImageConstant.map} />
-    </View>
+    </ScrollView>
   );
 }
+
+//TODO screens background. Registr. header
+//Move to react FC or ...

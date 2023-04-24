@@ -6,8 +6,17 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   homeScreenGaleryImage: {
+    width: 331,
+    height: '100%',
+    marginRight: 20,
+  },
+  homeScreenGaleryImageLast: {
+    marginRight: 0,
+  },
+  bannersContainer: {
     width: '100%',
     height: 166,
+    marginBottom: 12,
   },
   homeScreenTitle: {
     fontWeight: '600',
