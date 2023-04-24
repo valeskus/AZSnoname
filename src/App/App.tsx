@@ -37,11 +37,11 @@ export function App(): JSX.Element {
     <Provider store={store}>
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
+          {/* <Stack.Screen
             name="StackRegistration"
             component={StackRegistration}
             options={{headerShown: false}}
-          />
+          /> */}
           <Stack.Screen
             name="StackHome"
             component={StackHome}
