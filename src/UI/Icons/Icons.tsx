@@ -15,4 +15,5 @@ export const Icons = {
   bell: require('../../../assets/bell.png'),
   rightArrow: require('../../../assets/rightArrow.png'),
   productCode: require('../../../assets/productCode.png'),
+  arrowLeft: require('../../../assets/arrowLeft.png'),
 };
