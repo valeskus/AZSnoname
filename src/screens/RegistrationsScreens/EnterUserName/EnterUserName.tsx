@@ -10,7 +10,6 @@ export function EnterUserName(): JSX.Element {
   const {isValid, isLoading, onPress, handleUserName, handleUserSurname} =
     useEnterUserNameController();
 
-  // TODO: left padding on input
   return (
     <SafeAreaView style={styles.container}>
       <RegistrationHeader />

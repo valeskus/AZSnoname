@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 0},
+    paddingHorizontal: 5,
 
     letterSpacing: 0.04,
     // fontFamily: 'Mustica Pro',
