@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {DrawerHeaderProps} from '@react-navigation/drawer';
-import {styles} from './header.styles';
+import {styles} from './styles';
 import {Text, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
