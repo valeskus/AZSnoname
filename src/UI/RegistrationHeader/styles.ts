@@ -15,4 +15,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: 'rgb(48, 48, 48)',
   },
+  logoImage: {
+    resizeMode: 'contain',
+    width: 90,
+  },
 });
