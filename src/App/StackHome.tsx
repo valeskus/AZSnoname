@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Header} from './components/Header';
 import {Account} from '../screens/Account';
@@ -21,23 +21,11 @@ export type StackHomeParamList = {
   'Карта АЗК': undefined;
 };
 
-export function StackHome(): JSX.Element {
-  const AccountIcon = useMemo(() => {
-    return <Image source={Icons.account} style={styles.icon} />;
-  }, []);
-  const PriceIcon = useMemo(() => {
-    return <Image source={Icons.price} style={styles.icon} />;
-  }, []);
-  const VouchersIcon = useMemo(() => {
-    return <Image source={Icons.voucher} style={styles.icon} />;
-  }, []);
-  const SalesIcon = useMemo(() => {
-    return <Image source={Icons.sale} style={styles.icon} />;
-  }, []);
-  const MapIcon = useMemo(() => {
-    return <Image source={Icons.map} style={styles.icon} />;
-  }, []);
+const getIcon = (icon: keyof typeof Icons) => () => {
+  return <Image source={Icons[icon]} style={styles.icon} />;
+};
 
+export function StackHome(): JSX.Element {
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawer}
@@ -60,35 +48,35 @@ export function StackHome(): JSX.Element {
         name="Мій кабінет"
         component={Account}
         options={{
-          drawerIcon: () => AccountIcon,
+          drawerIcon: getIcon('account'),
         }}
       />
       <Drawer.Screen
         name="Мої талони"
         component={Vouchers}
         options={{
-          drawerIcon: () => VouchersIcon,
+          drawerIcon: getIcon('voucher'),
         }}
       />
       <Drawer.Screen
         name="Ціни"
         component={Price}
         options={{
-          drawerIcon: () => PriceIcon,
+          drawerIcon: getIcon('price'),
         }}
       />
       <Drawer.Screen
         name="Акції"
         component={Sales}
         options={{
-          drawerIcon: () => SalesIcon,
+          drawerIcon: getIcon('sale'),
         }}
       />
       <Drawer.Screen
         name="Карта АЗК"
         component={Map}
         options={{
-          drawerIcon: () => MapIcon,
+          drawerIcon: getIcon('map'),
         }}
       />
     </Drawer.Navigator>
