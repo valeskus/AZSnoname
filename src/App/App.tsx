@@ -6,9 +6,10 @@ import {
   StackRegistration,
   StackRegistrationParamList,
 } from './StackRegistration';
-import {StackHome, StackHomeParamList} from './StackHome';
+import {StackHome} from './StackHome';
 import {Provider} from 'react-redux';
 import {store} from '../stores/rootStore';
+import {StackDrawerParamList} from './StackDrawer';
 
 if (
   Platform.OS === 'android' &&
@@ -28,7 +29,7 @@ declare global {
   namespace ReactNavigation {
     interface RootParamList extends RootStackParamList {}
     interface RootParamList extends StackRegistrationParamList {}
-    interface RootParamList extends StackHomeParamList {}
+    interface RootParamList extends StackDrawerParamList {}
   }
 }
 

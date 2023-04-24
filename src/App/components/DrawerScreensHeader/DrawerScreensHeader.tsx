@@ -4,9 +4,14 @@ import {styles} from './styles';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Icons} from '../../../UI/Icons';
+import {useNavigation} from '@react-navigation/native';
 
 export const DrawerScreensHeader: React.FC<DrawerHeaderProps> = props => {
   const {top} = useSafeAreaInsets();
+  const navigation = useNavigation();
+  const onGoBack = () => {
+    return navigation.goBack();
+  };
 
   return (
     <View
@@ -16,7 +21,7 @@ export const DrawerScreensHeader: React.FC<DrawerHeaderProps> = props => {
           marginTop: top,
         },
       ]}>
-      <TouchableOpacity onPress={() => {}} style={styles.headerItem}>
+      <TouchableOpacity onPress={onGoBack} style={styles.headerItem}>
         <Image source={Icons.arrowLeft} style={styles.homeHeaderIcon} />
       </TouchableOpacity>
 

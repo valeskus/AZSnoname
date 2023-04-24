@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     width: '100%',
-    height: 50,
+    height: 80,
     alignItems: 'center',
     paddingHorizontal: 20,
   },

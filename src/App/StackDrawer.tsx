@@ -17,8 +17,8 @@ import {DrawerScreensHeader} from './components/DrawerScreensHeader';
 
 const Drawer = createDrawerNavigator();
 
-export type StackHomeParamList = {
-  Головна: undefined;
+export type StackDrawerParamList = {
+  Home: undefined;
   Account: undefined;
   Vouchers: undefined;
   Sale: undefined;
