@@ -1,17 +1,16 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
-import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterPhoneController} from './useEnterPhoneController';
+import {RegistrationScreenWrapper} from '../components';
 
 export function EnterPhone(): JSX.Element {
   const {isValid, isLoading, onPress, handleNumber} = useEnterPhoneController();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <RegistrationHeader />
+    <RegistrationScreenWrapper showBackButton={false}>
       <View style={styles.inputsContainer}>
         <PhoneNumberInput
           onChange={handleNumber}
@@ -27,6 +26,6 @@ export function EnterPhone(): JSX.Element {
         title="ДАЛІ"
         onPress={onPress}
       />
-    </SafeAreaView>
+    </RegistrationScreenWrapper>
   );
 }

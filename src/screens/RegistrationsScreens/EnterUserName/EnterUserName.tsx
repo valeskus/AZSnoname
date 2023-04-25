@@ -1,18 +1,17 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {Input} from '../../../UI/Input';
-import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserNameController} from './useEnterUserNameController';
+import {RegistrationScreenWrapper} from '../components';
 
 export function EnterUserName(): JSX.Element {
   const {isValid, isLoading, onPress, handleUserName, handleUserSurname} =
     useEnterUserNameController();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <RegistrationHeader />
+    <RegistrationScreenWrapper>
       <View style={styles.inputsContainer}>
         <Input label="Ваше ім'я" onChange={handleUserName} />
         <Input label="Ваше прізвище" onChange={handleUserSurname} />
@@ -23,6 +22,6 @@ export function EnterUserName(): JSX.Element {
         title="ДАЛІ"
         onPress={onPress}
       />
-    </SafeAreaView>
+    </RegistrationScreenWrapper>
   );
 }

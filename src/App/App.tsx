@@ -1,5 +1,5 @@
 import React from 'react';
-import {ImageBackground, Platform, UIManager} from 'react-native';
+import {Platform, UIManager} from 'react-native';
 import {DefaultTheme, NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
@@ -10,8 +10,8 @@ import {StackHome} from './StackHome';
 import {Provider} from 'react-redux';
 import {store} from '../stores/rootStore';
 import {StackDrawerParamList} from './StackDrawer';
-import {ImageConstant} from '../UI/ImageConstant';
 import {styles} from './styles';
+import {ScreenWrapper} from '../components';
 
 if (
   Platform.OS === 'android' &&
@@ -45,9 +45,7 @@ const navTheme = {
 export function App(): JSX.Element {
   return (
     <Provider store={store}>
-      <ImageBackground
-        source={ImageConstant.background}
-        style={styles.backgroundImage}>
+      <ScreenWrapper style={styles.screenWrapper}>
         <NavigationContainer theme={navTheme}>
           <Stack.Navigator>
             <Stack.Screen
@@ -62,7 +60,7 @@ export function App(): JSX.Element {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </ImageBackground>
+      </ScreenWrapper>
     </Provider>
   );
 }

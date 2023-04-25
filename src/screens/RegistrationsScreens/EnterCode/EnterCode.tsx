@@ -1,12 +1,12 @@
 import React from 'react';
-import {SafeAreaView, View} from 'react-native';
+import {View} from 'react-native';
 import {styles} from './styles';
 import {Button} from '../../../UI/Button';
 import {PhoneNumberInput} from '../../../UI/PhoneNumberInput';
 import {CodeInputs} from '../../../UI/CodeInputs/CodeInputs';
-import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterCodeController} from './useEnterCodeController';
 import {LinkButton} from '../../../UI/LinkButton';
+import {RegistrationScreenWrapper} from '../components';
 
 export function EnterCode(): JSX.Element {
   const {
@@ -22,8 +22,7 @@ export function EnterCode(): JSX.Element {
   } = useEnterCodeController();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <RegistrationHeader />
+    <RegistrationScreenWrapper>
       <View style={styles.inputsContainer}>
         <PhoneNumberInput
           label="Ваш номер телефону:"
@@ -51,6 +50,6 @@ export function EnterCode(): JSX.Element {
         title="ДАЛІ"
         onPress={onNextPress}
       />
-    </SafeAreaView>
+    </RegistrationScreenWrapper>
   );
 }

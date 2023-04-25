@@ -1,13 +1,13 @@
 import React from 'react';
-import {SafeAreaView, TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {styles} from './styles';
 import {Input} from '../../../UI/Input';
 import {Button} from '../../../UI/Button';
-import {RegistrationHeader} from '../../../UI/RegistrationHeader';
 import {useEnterUserBirthdayController} from './useEnterUserBirthdayController';
 import {LinkButton} from '../../../UI/LinkButton';
 import DatePicker from 'react-native-date-picker';
 import {Checkbox} from '../../../UI/Checkbox';
+import {RegistrationScreenWrapper} from '../components';
 
 export function EnterUserBirthday(): JSX.Element {
   const {
@@ -23,8 +23,7 @@ export function EnterUserBirthday(): JSX.Element {
   } = useEnterUserBirthdayController();
 
   return (
-    <SafeAreaView style={styles.container}>
-      <RegistrationHeader />
+    <RegistrationScreenWrapper>
       <View style={styles.inputsContainer}>
         <TouchableOpacity
           onPress={openDatePicker}
@@ -54,6 +53,6 @@ export function EnterUserBirthday(): JSX.Element {
       {isDatePickerVisible && (
         <DatePicker date={date} onDateChange={onChangeDate} mode={'date'} />
       )}
-    </SafeAreaView>
+    </RegistrationScreenWrapper>
   );
 }

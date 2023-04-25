@@ -35,7 +35,6 @@ const renderHeader = (props: DrawerHeaderProps) => (
 
 export function StackDrawer(): JSX.Element {
   return (
-    // <ImageBackground source={ImageConstant.background} style={{flex: 1}}>
     <Drawer.Navigator
       drawerContent={CustomDrawer}
       screenOptions={{
@@ -106,7 +105,6 @@ export function StackDrawer(): JSX.Element {
         }}
       />
     </Drawer.Navigator>
-    // </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
