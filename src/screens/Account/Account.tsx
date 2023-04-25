@@ -7,6 +7,7 @@ import {useAccountController} from './hooks';
 
 export function Account(): JSX.Element {
   const {name, onSignIn} = useAccountController();
+
   return (
     <View style={styles.container}>
       {!name && (

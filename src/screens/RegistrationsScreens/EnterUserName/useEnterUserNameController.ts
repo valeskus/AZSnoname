@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {useCallback, useState} from 'react';
 import {useAddUserNameThrowable} from '../../../stores/user/hooks';
+import {Alert} from 'react-native';
 
 export const useEnterUserNameController = () => {
   const [userName, setUserName] = useState('');
@@ -26,7 +27,7 @@ export const useEnterUserNameController = () => {
       await addUserNameThrowable(userName, userSurname);
       navigation.navigate('EnterUserBirthday');
     } catch {
-      // TODO: handle error
+      Alert.alert('Ooops...Something went wrong', '', [{text: 'Try later'}]);
     } finally {
       setLoading(false);
     }

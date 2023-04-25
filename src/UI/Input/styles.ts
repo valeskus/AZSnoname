@@ -12,10 +12,7 @@ export const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {width: 0, height: 0},
     paddingHorizontal: 5,
-
     letterSpacing: 0.04,
-    // fontFamily: 'Mustica Pro',
-    fontStyle: 'normal',
     fontWeight: '600',
     color: '#303030',
   },

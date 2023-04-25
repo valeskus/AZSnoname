@@ -24,8 +24,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   registrationHeaderTitle: {
-    // fontFamily: 'Intro',
-    fontStyle: 'normal',
     fontWeight: '400',
     fontSize: 16,
     color: 'rgb(48, 48, 48)',
@@ -37,6 +35,7 @@ export const styles = StyleSheet.create({
   headerItem: {
     position: 'absolute',
     left: 20,
+    zIndex: 10,
   },
   homeHeaderIcon: {
     width: 25,

@@ -25,7 +25,7 @@ export function PhoneNumberInput({
     usePhoneNumberInputController({initialValue, onChange, phoneFormat});
 
   return (
-    <View style={styles.phoneNumberContainer}>
+    <View>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.phoneNumberInputcontainer}>
         <Image source={Icons.flag} style={styles.flagIcon} />

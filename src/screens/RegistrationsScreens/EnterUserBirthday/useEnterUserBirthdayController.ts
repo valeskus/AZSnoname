@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useAddUserBirthdayThrowable} from '../../../stores/user/hooks';
 import {useAcceptTerms, useDatePickerController} from './hooks';
 import {useState} from 'react';
+import {Alert} from 'react-native';
 
 export const useEnterUserBirthdayController = () => {
   const [isLoading, setLoading] = useState(false);
@@ -27,8 +28,8 @@ export const useEnterUserBirthdayController = () => {
     try {
       await addUserBirthdayThrowable(formattedDate);
       navigation.navigate('StackHome');
-    } catch (error) {
-      //TODO: log error
+    } catch {
+      Alert.alert('Ooops...Something went wrong', '', [{text: 'Try later'}]);
     } finally {
       setLoading(false);
     }

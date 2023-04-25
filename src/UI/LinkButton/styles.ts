@@ -8,7 +8,6 @@ export const styles = StyleSheet.create({
   buttonTitle: {
     fontSize: 12,
     color: 'rgb(48, 48, 48)',
-    // fontFamily: 'Mustica Pro',
     fontStyle: 'normal',
     fontWeight: '600',
   },
