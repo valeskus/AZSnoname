@@ -38,6 +38,3 @@ export function Home(): JSX.Element {
     </ScrollView>
   );
 }
-
-//TODO screens background. Registr. header
-//Move to react FC or ...

@@ -8,7 +8,10 @@ interface Props {
   initialState?: boolean;
 }
 
-export const Checkbox: React.FC<Props> = ({onPress, initialState = false}) => {
+export const Checkbox = ({
+  onPress,
+  initialState = false,
+}: Props): JSX.Element => {
   const [active, setActive] = React.useState(initialState);
 
   const handlePress = () => {

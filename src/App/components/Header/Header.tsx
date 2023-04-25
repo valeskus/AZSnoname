@@ -5,7 +5,7 @@ import {Image, Text, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Icons} from '../../../UI/Icons';
 
-export const Header: React.FC<DrawerHeaderProps> = props => {
+export const Header = (props: DrawerHeaderProps): JSX.Element => {
   const {top} = useSafeAreaInsets();
 
   return (

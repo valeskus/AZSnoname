@@ -4,20 +4,9 @@ export const styles = StyleSheet.create({
   homeScreenContainer: {
     flex: 1,
     padding: 20,
+    backgroundColor: 'transparent',
   },
-  homeScreenGaleryImage: {
-    width: 331,
-    height: '100%',
-    marginRight: 20,
-  },
-  homeScreenGaleryImageLast: {
-    marginRight: 0,
-  },
-  bannersContainer: {
-    width: '100%',
-    height: 166,
-    marginBottom: 12,
-  },
+
   homeScreenTitle: {
     fontWeight: '600',
     fontSize: 14,
