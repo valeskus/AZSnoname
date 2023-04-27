@@ -1,5 +1,5 @@
-import React, {useCallback, useMemo, useState} from 'react';
-import {Text, View} from 'react-native';
+import React, {createRef, useCallback, useMemo, useState} from 'react';
+import {Text, TextInput, View} from 'react-native';
 import {styles} from './styles';
 import {Input} from '../Input';
 
@@ -17,10 +17,20 @@ export function CodeInputs({
   codeLength,
 }: Props): JSX.Element {
   const [code, setCode] = useState<Array<string>>([]);
+
   const codePlaceholderList = useMemo(
     () => new Array(codeLength).fill({}),
     [codeLength],
   );
+  const refList = useMemo(
+    () =>
+      new Array(codeLength)
+        .fill(null)
+        .map((): React.RefObject<TextInput> => createRef()),
+    [codeLength],
+  );
+
+  //todo last input error
 
   const getOnChangeHandler = useCallback(
     (inputIndex: number) => (text: string) => {
@@ -29,10 +39,19 @@ export function CodeInputs({
 
       setCode(nextCode);
       onChange(Number(nextCode.join('').replace(/\D/g, '')));
+
+      refList[inputIndex + 1].current?.focus();
     },
 
-    [code, onChange],
+    [code, onChange, refList],
   );
+
+  // const handleKeyPress = ({nativeEvent: {key: keyValue}}) => {
+  //   if (keyValue === 'Backspace') {
+  //     console.log('back');
+  //   }
+  // };
+
   return (
     <View>
       <Text>{label}</Text>
@@ -43,6 +62,7 @@ export function CodeInputs({
               onChange={getOnChangeHandler(index)}
               length={1}
               invalid={!valid}
+              refValue={refList[index]}
             />
           </View>
         ))}

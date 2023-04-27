@@ -9,8 +9,12 @@ export type Props = {
   invalid?: boolean;
   value?: string;
   editable?: boolean;
+  refValue?: any;
   onChange?: (value: string) => void;
+  keyPressed?: any;
 };
+
+//TOOD types
 
 export function Input({
   type,
@@ -20,8 +24,11 @@ export function Input({
   value,
   editable,
   onChange,
+  refValue,
+  keyPressed,
 }: Props): JSX.Element {
   const isCodeInput = length === 1 ? true : false;
+  console.log(refValue);
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
@@ -36,6 +43,8 @@ export function Input({
         onChangeText={onChange}
         value={value}
         editable={editable}
+        ref={refValue}
+        onKeyPress={keyPressed}
       />
     </View>
   );

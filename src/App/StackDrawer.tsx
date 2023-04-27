@@ -37,6 +37,7 @@ export function StackDrawer(): JSX.Element {
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawer}
+      defaultStatus="open"
       screenOptions={{
         header: Header,
         drawerPosition: 'right',

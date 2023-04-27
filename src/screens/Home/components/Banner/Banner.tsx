@@ -27,6 +27,7 @@ export const Banner: React.FC = () => {
         showsHorizontalScrollIndicator={false}
         horizontal
         pagingEnabled
+        scrollEventThrottle={16}
         onScroll={handleScroll}>
         {banners.map((item, index) => {
           return (
