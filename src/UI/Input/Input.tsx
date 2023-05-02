@@ -4,6 +4,7 @@ import {
   NativeSyntheticEvent,
   Text,
   TextInput,
+  TextInputProps,
   TextInputChangeEventData,
   TextInputKeyPressEventData,
   View,
@@ -17,6 +18,7 @@ export type Props = {
   invalid?: boolean;
   value?: string;
   refValue?: any;
+  textAlign?: TextInputProps['textAlign'];
   isSelectTextOnFocus?: boolean;
   onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
   onKeyPressed?: (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
@@ -33,6 +35,7 @@ export function Input({
   onChange,
   refValue,
   isSelectTextOnFocus,
+  textAlign,
   onKeyPressed,
 }: Props): JSX.Element {
   const isCodeInput = length === 1 ? true : false;
@@ -40,6 +43,7 @@ export function Input({
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
       <TextInput
+        textAlign={textAlign}
         style={[
           styles.input,
           isCodeInput && styles.center,

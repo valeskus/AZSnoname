@@ -31,12 +31,14 @@ export function CodeInputs({
         {codePlaceholderList.map((_, index) => (
           <View style={styles.codeInput} key={index}>
             <Input
-              onChange={event => getOnChangeHandler(event, index)}
-              length={1}
+              onChange={getOnChangeHandler(index)}
+              textAlign="center"
               invalid={!valid}
               refValue={refList[index]}
               onKeyPressed={e => handleKeyPress(e, index)}
               value={code[index]}
+              type="number-pad"
+              isSelectTextOnFocus
             />
           </View>
         ))}

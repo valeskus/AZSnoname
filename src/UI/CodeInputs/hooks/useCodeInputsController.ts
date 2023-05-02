@@ -1,4 +1,10 @@
-import React, {createRef, useCallback, useMemo, useState} from 'react';
+import React, {
+  createRef,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {
   NativeSyntheticEvent,
   TextInput,
@@ -11,7 +17,6 @@ export const useCodeInputsController = (
   onChange: (value: number) => void,
 ) => {
   const [code, setCode] = useState<Array<string>>([]);
-
   const codePlaceholderList = useMemo(
     () => new Array(codeLength).fill({}),
     [codeLength],
@@ -38,19 +43,40 @@ export const useCodeInputsController = (
   );
 
   const getOnChangeHandler = useCallback(
-    (
-      event: NativeSyntheticEvent<TextInputChangeEventData>,
-      inputIndex: number,
-    ) => {
-      const nextCode = [...code];
-      nextCode[inputIndex] = event.nativeEvent.text;
-      setCode(nextCode);
-      onChange(Number(nextCode.join('').replace(/\D/g, '')));
-      setFocus(event.nativeEvent.text, inputIndex);
-    },
+    (inputIndex: number) =>
+      (event: NativeSyntheticEvent<TextInputChangeEventData>) => {
+        const {text} = event.nativeEvent;
 
-    [code, onChange, setFocus],
+        const isPasteEvent = text.length === codeLength;
+
+        if (isPasteEvent) {
+          setCode(text.split(''));
+          refList[codeLength - 1].current?.focus();
+        } else {
+          const nextCode = [...code];
+
+          const isLastInput = inputIndex !== codeLength - 1;
+          const isInputLengthExceeded = text.length === 2;
+
+          let targetIndex = inputIndex;
+          if (isInputLengthExceeded && isLastInput) {
+            targetIndex = inputIndex + 1;
+          }
+
+          nextCode[targetIndex] = text[text.length - 1] || '';
+
+          setCode(nextCode);
+          setFocus(nextCode[inputIndex], inputIndex);
+        }
+      },
+
+    [code, setFocus, refList, codeLength],
   );
+
+  useEffect(() => {
+    onChange(Number(code.join('').replace(/\D/g, '')));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [code]);
 
   const handleKeyPress = useCallback(
     (e: NativeSyntheticEvent<TextInputKeyPressEventData>, index: number) => {
@@ -72,15 +98,13 @@ export const useCodeInputsController = (
       }
 
       //TODO
-      if (code[index] !== '') {
-        nextCode[index + 1] = e.nativeEvent.key;
-        setCode(nextCode);
-        onChange(Number(nextCode.join('').replace(/\D/g, '')));
-      }
-
+      // if (code[index] !== '' && code[index] !== undefined) {
+      //   nextCode[index + 1] = e.nativeEvent.key;
+      //   setCode(nextCode);
+      // }
       return refList[index + 1].current?.focus();
     },
-    [refList, codeLength, code, onChange],
+    [refList, codeLength, code],
   );
 
   return {
