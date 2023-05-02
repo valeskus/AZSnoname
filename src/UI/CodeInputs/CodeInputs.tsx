@@ -1,7 +1,8 @@
-import React, {createRef, useCallback, useMemo, useState} from 'react';
-import {Text, TextInput, View} from 'react-native';
+import React from 'react';
+import {Text, View} from 'react-native';
 import {styles} from './styles';
 import {Input} from '../Input';
+import {useCodeInputsController} from './hooks';
 
 export type Props = {
   label: string;
@@ -16,42 +17,13 @@ export function CodeInputs({
   valid,
   codeLength,
 }: Props): JSX.Element {
-  const [code, setCode] = useState<Array<string>>([]);
-
-  const codePlaceholderList = useMemo(
-    () => new Array(codeLength).fill({}),
-    [codeLength],
-  );
-  const refList = useMemo(
-    () =>
-      new Array(codeLength)
-        .fill(null)
-        .map((): React.RefObject<TextInput> => createRef()),
-    [codeLength],
-  );
-
-  //todo last input error
-
-  const getOnChangeHandler = useCallback(
-    (inputIndex: number) => (text: string) => {
-      const nextCode = [...code];
-      nextCode[inputIndex] = text;
-
-      setCode(nextCode);
-      onChange(Number(nextCode.join('').replace(/\D/g, '')));
-
-      refList[inputIndex + 1].current?.focus();
-    },
-
-    [code, onChange, refList],
-  );
-
-  // const handleKeyPress = ({nativeEvent: {key: keyValue}}) => {
-  //   if (keyValue === 'Backspace') {
-  //     console.log('back');
-  //   }
-  // };
-
+  const {
+    codePlaceholderList,
+    getOnChangeHandler,
+    refList,
+    handleKeyPress,
+    code,
+  } = useCodeInputsController(codeLength, onChange);
   return (
     <View>
       <Text>{label}</Text>
@@ -59,10 +31,12 @@ export function CodeInputs({
         {codePlaceholderList.map((_, index) => (
           <View style={styles.codeInput} key={index}>
             <Input
-              onChange={getOnChangeHandler(index)}
+              onChange={event => getOnChangeHandler(event, index)}
               length={1}
               invalid={!valid}
               refValue={refList[index]}
+              onKeyPressed={e => handleKeyPress(e, index)}
+              value={code[index]}
             />
           </View>
         ))}

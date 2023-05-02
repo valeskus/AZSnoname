@@ -1,5 +1,13 @@
 import React from 'react';
-import {KeyboardTypeOptions, Text, TextInput, View} from 'react-native';
+import {
+  KeyboardTypeOptions,
+  NativeSyntheticEvent,
+  Text,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputKeyPressEventData,
+  View,
+} from 'react-native';
 import {styles} from './styles';
 
 export type Props = {
@@ -8,10 +16,10 @@ export type Props = {
   length?: number;
   invalid?: boolean;
   value?: string;
-  editable?: boolean;
   refValue?: any;
-  onChange?: (value: string) => void;
-  keyPressed?: any;
+  isSelectTextOnFocus?: boolean;
+  onChange?: (event: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+  onKeyPressed?: (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => void;
 };
 
 //TOOD types
@@ -22,13 +30,12 @@ export function Input({
   length,
   invalid,
   value,
-  editable,
   onChange,
   refValue,
-  keyPressed,
+  isSelectTextOnFocus,
+  onKeyPressed,
 }: Props): JSX.Element {
   const isCodeInput = length === 1 ? true : false;
-  console.log(refValue);
   return (
     <View style={styles.inputContainer}>
       <Text style={styles.label}>{label}</Text>
@@ -40,11 +47,11 @@ export function Input({
         ]}
         keyboardType={type}
         maxLength={length}
-        onChangeText={onChange}
+        onChange={onChange}
         value={value}
-        editable={editable}
         ref={refValue}
-        onKeyPress={keyPressed}
+        selectTextOnFocus={isSelectTextOnFocus}
+        onKeyPress={onKeyPressed}
       />
     </View>
   );

@@ -24,7 +24,6 @@ export const useEnterCodeController = () => {
       navigation.navigate('EnterUserName');
     }
   };
-
   const onCodeChange = (nextCode: number) => {
     setCode(String(nextCode));
   };
