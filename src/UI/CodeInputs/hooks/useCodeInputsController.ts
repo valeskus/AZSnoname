@@ -97,11 +97,6 @@ export const useCodeInputsController = (
         return refList[index].current?.focus();
       }
 
-      //TODO
-      // if (code[index] !== '' && code[index] !== undefined) {
-      //   nextCode[index + 1] = e.nativeEvent.key;
-      //   setCode(nextCode);
-      // }
       return refList[index + 1].current?.focus();
     },
     [refList, codeLength, code],
